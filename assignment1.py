@@ -1,4 +1,4 @@
-from sir                import integrate, print_plot
+from sir                import *
 
 from matplotlib         import pyplot as plt
 from scipy.optimize     import least_squares
@@ -95,22 +95,25 @@ def main():
 
     beta, gamma, mse = fit()
 
-    print(beta, gamma, mse)
+    # print(beta, gamma, mse)
 
-    s, i, r, t = integrate(N, s0, i0, r0, beta, gamma, t0, dt, steps)
+    # s, i, r, t = integrate(N, s0, i0, r0, beta, gamma, t0, dt, steps)
 
-    print_plot(s, i, r, t, t_points, i_points)
+    # print_plot(s, i, r, t, t_points, i_points)
 
     """
     #1.3
     """
 
-    # Vaccination strategy 1: Complete lockdown, meaning that the school is closed. Of course, children would still come in contact with other people when a school is closed,
-    # but we are only looking at the school system for now. The school is closed exactly 4 days after t0.
+    # Vaccination strategy 1: Gradual vaccination of 30 children per day starting on day 3
 
-    #Vaccination strategy 2:
+    s, i, r, t = integrate_1(N, s0, i0, r0, beta, gamma, t0, dt, steps)
 
-    #Vaccination strategy 3:
+    print_plot(s, i, r, t, t_points, i_points)
+
+    # Vaccination strategy 2: 
+
+    # Vaccination strategy 3:
 
 if __name__ == "__main__":
     main()
