@@ -56,7 +56,7 @@ def print_plot(s_values, i_values, r_values, t_values, x_points=None, y_points=N
     plt.show()
 
 # Vaccination strategy 1
-def integrate_1(N, s0, i0, r0, beta, gamma, t0=0, dt=0.01, steps=1000):
+def integrate_1(strategy, N, s0, i0, r0, beta, gamma, t0=0, dt=0.01, steps=1000):
     
     s_values = [(s0/N)]
     i_values = [(i0/N)]
@@ -79,11 +79,23 @@ def integrate_1(N, s0, i0, r0, beta, gamma, t0=0, dt=0.01, steps=1000):
         r_new = r + dt * r_next
         t_new = t + dt
 
-        tmp = 30/N * dt if s*N >= 30 else s * dt
+        if strategy == "1":
 
-        if t_new > 3:
-            s_new -= tmp
-            r_new += tmp
+            if t_new > 3:
+
+                tmp = 30/N * dt if s*N >= 30 else s * dt
+
+                s_new -= tmp
+                r_new += tmp
+
+        if strategy == "2":
+
+            if t < 3 <= t_new:
+                
+                tmp = 0.5 if s >= 0.5 else s
+
+                s_new -= tmp
+                r_new += tmp
 
         s_values.append(s_new)
         i_values.append(i_new)

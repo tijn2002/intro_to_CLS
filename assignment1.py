@@ -95,11 +95,11 @@ def main():
 
     beta, gamma, mse = fit()
 
-    # print(beta, gamma, mse)
+    print(beta, gamma, mse)
 
-    # s, i, r, t = integrate(N, s0, i0, r0, beta, gamma, t0, dt, steps)
+    s, i, r, t = integrate(N, s0, i0, r0, beta, gamma, t0, dt, steps)
 
-    # print_plot(s, i, r, t, t_points, i_points)
+    print_plot(s, i, r, t, t_points, i_points)
 
     """
     #1.3
@@ -107,13 +107,15 @@ def main():
 
     # Vaccination strategy 1: Gradual vaccination of 30 children per day starting on day 3
 
-    s, i, r, t = integrate_1(N, s0, i0, r0, beta, gamma, t0, dt, steps)
+    s1, i1, r1, t1 = integrate_1("1", N, s0, i0, r0, beta, gamma, t0, dt, steps)
 
-    print_plot(s, i, r, t, t_points, i_points)
+    print_plot(s1, i1, r1, t1, t_points, i_points)
 
-    # Vaccination strategy 2: 
+    # Vaccination strategy 2: The immediate vaccination of half of the school population on day 3. Assumes instant vaccination.
 
-    # Vaccination strategy 3:
+    s2, i2, r2, t2 = integrate_1("2", N, s0, i0, r0, beta, gamma, t0, dt, steps)
+
+    print_plot(s2, i2, r2, t2, t_points, i_points)
 
 if __name__ == "__main__":
     main()
